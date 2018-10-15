@@ -14,14 +14,9 @@ class NetworkReceiver : BroadcastReceiver() {
     }
 
     private fun hasInternet(context: Context): Boolean {
-        val connectivityManager =
-                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetworkInfo = connectivityManager.activeNetworkInfo
-        connectivityManager.isActiveNetworkMetered
-        if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
-            return true
-        }
-        return false
+        val connectMgr = (context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
+        val activeNetworkInfo = connectMgr.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 
     interface NetworkReceiverListener {
